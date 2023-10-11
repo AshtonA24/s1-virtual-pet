@@ -45,7 +45,7 @@ public class VirtualPetFace extends JFrame implements ActionListener{
     private String[] files;
     private Image[] allPics;
     private ArrayList<Image> pics;
-    private Timer timer;
+    private Timer timer; 
     
 
     private static final String imageBase = "pet_images/";

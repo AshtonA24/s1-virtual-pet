@@ -105,7 +105,6 @@ public class loan extends JFrame implements ActionListener{
         return append;
     }
 
-
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == button1){
@@ -119,12 +118,7 @@ public class loan extends JFrame implements ActionListener{
         }
     }
 
-    
     public static void main(String[] args) {
         new loan();
-
     }
-
-
-    
 }

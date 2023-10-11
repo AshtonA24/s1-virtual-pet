@@ -1,11 +1,18 @@
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 public class Runner {
 
     public Runner() {
         VirtualPet p = new VirtualPet();
 
-        p.exercise();
         takeABeat(1000);
-        p.feed();
+        if(getAnswer("how are you?").equals("hungry")){
+            p.feed();
+        }
+        
+        
+        
 
     }
 
@@ -16,6 +23,19 @@ public class Runner {
 
         }
     }
+
+    
+
+    public String getAnswer(String a){
+        String s = (String)JOptionPane.showInputDialog(
+        new JFrame(), a, "Message", JOptionPane.PLAIN_MESSAGE);
+        return s;
+}
+
+    
+
+    
+
 
     public static void main(String[] args) {
         new Runner();
