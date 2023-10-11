@@ -3,6 +3,7 @@
  * @author Cam
  * @author ?
  */
+
 public class VirtualPet {
     
     VirtualPetFace face;
