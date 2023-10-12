@@ -17,8 +17,11 @@ public class Runner {
         p.passedHim(a);
 
         p.takeABeat(3000);
+        
+        if(p.getOpScore() != p.getOurScore()){
         p.face.setMessage("Kickoff commences");
         p.takeABeat(2000);
+        }
         p.face.setMessage("You get the ball again...");
         p.takeABeat(1000);
         p.defender("Maguire");

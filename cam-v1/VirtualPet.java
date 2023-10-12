@@ -37,7 +37,7 @@ public class VirtualPet {
 
         if (a.equals("Maguire")) {
             face.setMessage("Phew, its just Maguire!");
-            face.setImage("magiure");
+            face.setImage("maguire");
         }
 
     }
@@ -49,13 +49,13 @@ public class VirtualPet {
             if (getAnswer("You have a shot at goal, shoot left or right?").equals("left")) {
                 face.setMessage("Shooting...");
                 takeABeat(500);
-                face.setMessage("YOU SCORED");
+                face.setMessage("YOU SCORED!");
                 ourScore++;
                 face.setImage("ecstatic");
             } else {
                 face.setMessage("Shooting...");
                 takeABeat(500);
-                face.setMessage("you missed");
+                face.setMessage("You missed.");
                 face.setImage("verysad");
             }
         } else {
@@ -67,8 +67,8 @@ public class VirtualPet {
                 face.setImage("ecstatic");
             } else {
                 face.setMessage("Shooting...");
-                takeABeat(500);
-                face.setMessage("you missed");
+                takeABeat(1000);
+                face.setMessage("You missed.");
                 face.setImage("verysad");
             }
         }
@@ -85,6 +85,7 @@ public class VirtualPet {
             face.setMessage("You passed the defender and now have a shot at goal...");
             takeABeat(2000);
             goalChance();
+            takeABeat(2000);
             displayScore();
 
         } else {
@@ -109,6 +110,27 @@ public class VirtualPet {
             a += "Its tied.";
 
         face.setMessage(a);
+    }
+
+    public void endGame(){
+        face.setMessage("The final whistle blows*");
+        takeABeat(2000);
+        String s = "Final score" + ourScore + opScore+ ". ";
+        if (ourScore > opScore)
+            s += "You won!";
+        else if (opScore > ourScore)
+            s += "You lost...";
+        else
+            s += "You tied.";
+        face.setMessage(s);
+    }
+
+    public int getOpScore(){
+        return opScore;
+    }
+
+    public int getOurScore(){
+        return ourScore;
     }
 
     public String getAnswer(String a) {
