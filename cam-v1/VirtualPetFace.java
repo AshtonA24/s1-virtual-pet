@@ -19,7 +19,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.FilenameFilter;
+// import java.io.FilenameFilter;
 import java.util.ArrayList;
 
 
@@ -50,9 +50,7 @@ public class VirtualPetFace extends JFrame implements ActionListener{
 
     private static final String imageBase = "pet_images/";
     
-    public static void main(String args[]) {
-        VirtualPet newPet = new VirtualPet();   
-    }
+    
     
     public VirtualPetFace() {
         try {
@@ -86,6 +84,7 @@ public class VirtualPetFace extends JFrame implements ActionListener{
     public void createGUI() {
         setMaximumSize(new Dimension(WIDTH, HEIGHT));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
         setSize(new Dimension(WIDTH, HEIGHT));
         Container contentPane = this.getContentPane();
         contentPane.setLayout(new GridBagLayout());
@@ -125,6 +124,7 @@ public class VirtualPetFace extends JFrame implements ActionListener{
         //toFront();
         setAlwaysOnTop(true);
         setAlwaysOnTop(false);
+        setLocation(535,0); // sets location above the message screen
     }
     
     private void setBackground() {

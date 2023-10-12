@@ -4,37 +4,126 @@
  * @author ?
  */
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 public class VirtualPet {
-    
+
     VirtualPetFace face;
-    int hunger = 0;   // how hungry the pet is.
-    
+
+    private int opScore = 0;
+    private int ourScore = 0;
+
     // constructor
     public VirtualPet() {
         face = new VirtualPetFace();
-        face.setImage("angel");
-        face.setMessage("Whistle blows");
+        face.setImage("normal");
+        face.setMessage("Whistle blows*");
     }
-    
-    public void feed() {
-        if (hunger > 10) {
-            hunger = hunger - 10;
-        } else {
-            hunger = 0;
+
+    public boolean stepovers(String a) {
+        Integer i = Integer.parseInt(a);
+        if (i < 3) {
+            return true;
         }
-        face.setMessage("Yum, thanks");
-        face.setImage("ramos");
+        return false;
     }
-    
-    public void exercise() {
-        hunger = hunger + 3;
-        face.setMessage("1, 2, 3, jump.  Whew.");
-        face.setImage("tired");
+
+    public void defender(String a) {
+        if (a.equals("Ramos")) {
+            face.setMessage("Oh no! Ramos.");
+            face.setImage("ramos");
+        }
+
+        if (a.equals("Maguire")) {
+            face.setMessage("Phew, its just Maguire!");
+            face.setImage("magiure");
+        }
+
     }
-    
-    public void sleep() {
-        hunger = hunger + 1;
-        face.setImage("asleep");
+
+    public void goalChance() {
+
+        int value = (int) (Math.random() * 2);
+        if (value == 0) {
+            if (getAnswer("You have a shot at goal, shoot left or right?").equals("left")) {
+                face.setMessage("Shooting...");
+                takeABeat(500);
+                face.setMessage("YOU SCORED");
+                ourScore++;
+                face.setImage("ecstatic");
+            } else {
+                face.setMessage("Shooting...");
+                takeABeat(500);
+                face.setMessage("you missed");
+                face.setImage("verysad");
+            }
+        } else {
+            if (getAnswer("You have a shot at goal, shoot left or right?").equals("right")) {
+                face.setMessage("Shooting...");
+                takeABeat(500);
+                face.setMessage("YOU SCORED");
+                ourScore++;
+                face.setImage("ecstatic");
+            } else {
+                face.setMessage("Shooting...");
+                takeABeat(500);
+                face.setMessage("you missed");
+                face.setImage("verysad");
+            }
+        }
+
+    }
+
+    public void passedHim(boolean a) {
+        face.setMessage("Attempting to pass defender...");
+        takeABeat(1500);
+        if (a) {
+            face.setMessage("You got passed him!");
+            face.setImage("joyful");
+            takeABeat(2000);
+            face.setMessage("You passed the defender and now have a shot at goal...");
+            takeABeat(2000);
+            goalChance();
+            displayScore();
+
+        } else {
+            face.setMessage("Too many stepovers.");
+            takeABeat(1500);
+            face.setMessage("You lose possesion and they score.");
+            takeABeat(1000);
+            opScore ++;
+            displayScore();
+            face.setImage("cry");
+        }
+    }
+
+    public void displayScore() {
+        String a = "The score is " + ourScore + "-" + opScore + ", ";
+
+        if (ourScore > opScore)
+            a += "You're winning!";
+        else if (opScore > ourScore)
+            a += "You're losing...";
+        else
+            a += "Its tied.";
+
+        face.setMessage(a);
+    }
+
+    public String getAnswer(String a) {
+        String s = (String) JOptionPane.showInputDialog(
+                new JFrame(), a, "Message", JOptionPane.PLAIN_MESSAGE);
+        return s;
+    }
+
+    public void takeABeat(int milliseconds) {
+        try {
+            Thread.sleep(milliseconds); // milliseconds
+        } catch (Exception e) {
+
+        }
+
     }
 
 } // end Virtual Pet

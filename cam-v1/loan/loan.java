@@ -34,7 +34,7 @@ public class loan extends JFrame implements ActionListener{
         text2 = new JTextField(5);
         text3 = new JTextField(5);
         text4 = new JTextField(5);
-        label1 = new JLabel("             Final Bal: ");
+        label1 = new JLabel("             Final Bal: 0.0");
         button1 = new JButton("ENTER");
 
 

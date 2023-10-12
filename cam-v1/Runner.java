@@ -3,39 +3,33 @@ import javax.swing.JOptionPane;
 
 public class Runner {
 
+    
+
     public Runner() {
         VirtualPet p = new VirtualPet();
+        
 
-        takeABeat(1000);
-        if(getAnswer("how are you?").equals("hungry")){
-            p.feed();
-        }
+        p.takeABeat(1000);
+        p.face.setMessage("You get the ball...");
+        p.takeABeat(1000);
+        p.defender("Ramos");
+        boolean a = p.stepovers(p.getAnswer("You come accross Ramos, how many stepovers are you doing?"));
+        p.passedHim(a);
+
+        p.takeABeat(3000);
+        p.face.setMessage("Kickoff commences");
+        p.takeABeat(2000);
+        p.face.setMessage("You get the ball again...");
+        p.takeABeat(1000);
+        p.defender("Maguire");
+        a = p.stepovers(p.getAnswer("You come accross Maguire, how many stepovers are you doing?"));
+        p.passedHim(a);
+
         
         
         
 
     }
-
-    public void takeABeat(int milliseconds) {
-        try {
-            Thread.sleep(milliseconds); // milliseconds
-        } catch (Exception e) {
-
-        }
-    }
-
-    
-
-    public String getAnswer(String a){
-        String s = (String)JOptionPane.showInputDialog(
-        new JFrame(), a, "Message", JOptionPane.PLAIN_MESSAGE);
-        return s;
-}
-
-    
-
-    
-
 
     public static void main(String[] args) {
         new Runner();
