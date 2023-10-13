@@ -124,7 +124,6 @@ public class VirtualPetFace extends JFrame implements ActionListener{
         //toFront();
         setAlwaysOnTop(true);
         setAlwaysOnTop(false);
-        setLocation(535,0); // sets location above the message screen
     }
     
     private void setBackground() {
@@ -220,6 +219,7 @@ public class VirtualPetFace extends JFrame implements ActionListener{
         public boolean isBorderOpaque() {
             return true;
         }
+        
     }
 }
 

@@ -7,6 +7,9 @@ public class Runner {
 
     public Runner() {
         VirtualPet p = new VirtualPet();
+
+        
+       
         
 
         p.takeABeat(1000);
@@ -25,7 +28,7 @@ public class Runner {
         p.face.setMessage("You get the ball again...");
         p.takeABeat(1000);
         p.defender("Maguire");
-        a = p.stepovers(p.getAnswer("You come accross Maguire, how many stepovers are you doing?"));
+        a = p.megFaint2(p.getAnswer2("You come accross Maguire, how many stepovers are you doing?"));
         p.passedHim(a);
 
         p.endGame();

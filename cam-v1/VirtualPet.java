@@ -84,12 +84,12 @@ public class VirtualPet {
             takeABeat(2000);
             face.setMessage("You passed the defender and now have a shot at goal...");
             takeABeat(2000);
-            goalChance();
+            goalChance2(getAnswer3());
             takeABeat(2000);
             displayScore();
 
         } else {
-            face.setMessage("Too many stepovers.");
+            face.setMessage("You didnt get passed him.");
             takeABeat(1500);
             face.setMessage("You lose possesion and they score.");
             takeABeat(1000);
@@ -150,4 +150,72 @@ public class VirtualPet {
 
     }
 
+
+    public Integer getAnswer2(String s) {
+        Object[] options = { "Meg him", "Do a bodyfaint" };
+
+        Integer n = JOptionPane.showOptionDialog(new JFrame(), s,
+
+                "Choice",
+                JOptionPane.YES_NO_CANCEL_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                options,
+                options[1]);
+
+        return n;
+    }
+
+    public Integer getAnswer3() {
+        Object[] options = { "Shoot left", "Shoot right" };
+
+        Integer n = JOptionPane.showOptionDialog(new JFrame(), "You have a shot opening",
+
+                "Choice",
+                JOptionPane.YES_NO_CANCEL_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                options,
+                options[1]);
+
+        return n;
+    }
+
+    public boolean megFaint2(Integer i){
+        
+        double n = Math.random() * 2;
+        if (i == 1 && n == 1){
+            return true;
+        }else if( i == 0 && n == 0)  {
+            return true;
+        }
+
+        return false;
+    }
+
+
+
+
+
+    public void goalChance2(Integer i) {
+
+        int value = (int) (Math.random() * 2);
+
+        if (i == 0 && value == 0) {
+            
+
+                face.setMessage("Shooting...");
+                takeABeat(500);
+                face.setMessage("YOU SCORED!");
+                ourScore++;
+                face.setImage("ecstatic");
+            } else if (i == 1 && value == 0){
+                face.setMessage("Shooting...");
+                takeABeat(500);
+                face.setMessage("You missed.");
+                face.setImage("verysad");
+            
+        } 
+
+    }
 } // end Virtual Pet
