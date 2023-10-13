@@ -23,7 +23,7 @@ public class VirtualPet {
 
     public boolean stepovers(String a) {
         Integer i = Integer.parseInt(a);
-        if (i < 3) {
+        if (i <= 4) {
             return true;
         }
         return false;
@@ -115,7 +115,7 @@ public class VirtualPet {
     public void endGame(){
         face.setMessage("The final whistle blows*");
         takeABeat(2000);
-        String s = "Final score" + ourScore + opScore+ ". ";
+        String s = "Final score: " + ourScore + "-"+  opScore+ ". ";
         if (ourScore > opScore)
             s += "You won!";
         else if (opScore > ourScore)
@@ -132,6 +132,8 @@ public class VirtualPet {
     public int getOurScore(){
         return ourScore;
     }
+
+    
 
     public String getAnswer(String a) {
         String s = (String) JOptionPane.showInputDialog(

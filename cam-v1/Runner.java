@@ -17,7 +17,7 @@ public class Runner {
         p.passedHim(a);
 
         p.takeABeat(3000);
-        
+
         if(p.getOpScore() != p.getOurScore()){
         p.face.setMessage("Kickoff commences");
         p.takeABeat(2000);
@@ -27,6 +27,8 @@ public class Runner {
         p.defender("Maguire");
         a = p.stepovers(p.getAnswer("You come accross Maguire, how many stepovers are you doing?"));
         p.passedHim(a);
+
+        p.endGame();
 
         
         
