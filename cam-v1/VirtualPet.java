@@ -42,38 +42,7 @@ public class VirtualPet {
 
     }
 
-    public void goalChance() {
-
-        int value = (int) (Math.random() * 2);
-        if (value == 0) {
-            if (getAnswer("You have a shot at goal, shoot left or right?").equals("left")) {
-                face.setMessage("Shooting...");
-                takeABeat(500);
-                face.setMessage("YOU SCORED!");
-                ourScore++;
-                face.setImage("ecstatic");
-            } else {
-                face.setMessage("Shooting...");
-                takeABeat(500);
-                face.setMessage("You missed.");
-                face.setImage("verysad");
-            }
-        } else {
-            if (getAnswer("You have a shot at goal, shoot left or right?").equals("right")) {
-                face.setMessage("Shooting...");
-                takeABeat(500);
-                face.setMessage("YOU SCORED");
-                ourScore++;
-                face.setImage("ecstatic");
-            } else {
-                face.setMessage("Shooting...");
-                takeABeat(1000);
-                face.setMessage("You missed.");
-                face.setImage("verysad");
-            }
-        }
-
-    }
+    
 
     public void passedHim(boolean a) {
         face.setMessage("Attempting to pass defender...");
@@ -84,7 +53,7 @@ public class VirtualPet {
             takeABeat(2000);
             face.setMessage("You passed the defender and now have a shot at goal...");
             takeABeat(2000);
-            goalChance2(getAnswer3());
+            goalChance(getAnswer3());
             takeABeat(2000);
             displayScore();
 
@@ -138,6 +107,7 @@ public class VirtualPet {
     public String getAnswer(String a) {
         String s = (String) JOptionPane.showInputDialog(
                 new JFrame(), a, "Message", JOptionPane.PLAIN_MESSAGE);
+
         return s;
     }
 
@@ -196,26 +166,30 @@ public class VirtualPet {
 
 
 
+    public void goalChance(Integer i) {
 
-    public void goalChance2(Integer i) {
+        int random = (int) (Math.random() * 2);
 
-        int value = (int) (Math.random() * 2);
+        //left = 0 right = 1
 
-        if (i == 0 && value == 0) {
-            
-
-                face.setMessage("Shooting...");
-                takeABeat(500);
-                face.setMessage("YOU SCORED!");
-                ourScore++;
-                face.setImage("ecstatic");
-            } else if (i == 1 && value == 0){
-                face.setMessage("Shooting...");
-                takeABeat(500);
-                face.setMessage("You missed.");
-                face.setImage("verysad");
-            
-        } 
+        if (i == 0 && random == 0) {
+            face.setMessage("Shooting...");
+            takeABeat(500);
+            face.setMessage("YOU SCORED!");
+            ourScore++;
+            face.setImage("ecstatic");
+        } else if (i == 1 && random == 1) {
+            face.setMessage("Shooting...");
+            takeABeat(500);
+            face.setMessage("YOU SCORED!");
+            ourScore++;
+            face.setImage("ecstatic");
+        } else {
+            face.setMessage("Shooting...");
+            takeABeat(500);
+            face.setMessage("You missed.");
+            face.setImage("verysad");
+        }
 
     }
 } // end Virtual Pet
