@@ -21,6 +21,47 @@ public class VirtualPet {
         face.setMessage("Whistle blows*");
     }
 
+
+    //events
+
+     public void goalChance(Integer i) {
+
+        int random = (int) (Math.random() * 2);
+
+        // i: left = 1 right = 0
+        //random: miss = 0 goal = 1
+
+        if (i == 1 && random == 1) {
+            face.setMessage("Shooting...");
+            takeABeat(500);
+            face.setMessage("YOU SCORED!");
+            ourScore++;
+            face.setImage("leftGoal");
+        } else if (i == 0 && random == 1) {
+            face.setMessage("Shooting...");
+            face.setImage("rightGoal");
+            takeABeat(500);
+            face.setMessage("YOU SCORED!");
+            ourScore++;
+            
+        } else if(i==1) {
+            face.setMessage("Shooting...");
+            face.setImage("leftMiss");
+            takeABeat(500);
+            face.setMessage("You missed.");
+            
+        } else {
+            face.setMessage("Shooting...");
+            face.setImage("rightMiss");
+            takeABeat(500);
+            face.setMessage("You missed.");
+            
+        }
+
+    }
+
+
+
     public boolean stepovers(String a) {
         Integer i = Integer.parseInt(a);
         if (i <= 4) {
@@ -29,28 +70,44 @@ public class VirtualPet {
         return false;
     }
 
-    public void defender(String a) {
-        if (a.equals("Ramos")) {
-            face.setMessage("Oh no! Ramos.");
-            face.setImage("ramos");
+
+
+    public boolean megFaint(Integer i){
+        
+        double n = Math.random() * 2;
+        if (i == 1 && n == 1){
+            return true;
+        }else if( i == 0 && n == 0)  {
+            return true;
         }
 
-        if (a.equals("Maguire")) {
-            face.setMessage("Phew, its just Maguire!");
-            face.setImage("maguire");
-        }
-
+        return false;
     }
 
-    
 
-    public void passedHim(boolean a) {
+
+    public void displayScore() {
+        String a = "The score is " + ourScore + "-" + opScore + ", ";
+
+        if (ourScore > opScore)
+            a += "You're winning!";
+        else if (opScore > ourScore)
+            a += "You're losing...";
+        else
+            a += "Its tied.";
+
+        face.setMessage(a);
+    }
+
+        public void passedHim(boolean a) {
         face.setMessage("Attempting to pass defender...");
         takeABeat(1500);
         if (a) {
             face.setMessage("You got passed him!");
             face.setImage("joyful");
-            takeABeat(2000);
+            takeABeat(1000);
+            face.setImage("openGoal");
+            takeABeat(1000);
             face.setMessage("You passed the defender and now have a shot at goal...");
             takeABeat(2000);
             goalChance(getAnswer3());
@@ -68,23 +125,12 @@ public class VirtualPet {
         }
     }
 
-    public void displayScore() {
-        String a = "The score is " + ourScore + "-" + opScore + ", ";
 
-        if (ourScore > opScore)
-            a += "You're winning!";
-        else if (opScore > ourScore)
-            a += "You're losing...";
-        else
-            a += "Its tied.";
 
-        face.setMessage(a);
-    }
-
-    public void endGame(){
+     public void endGame(){
         face.setMessage("The final whistle blows*");
         takeABeat(2000);
-        String s = "Final score: " + ourScore + "-"+  opScore+ ". ";
+        String s = "Final score: " + ourScore + "-" +  opScore+ ". ";
         if (ourScore > opScore)
             s += "You won!";
         else if (opScore > ourScore)
@@ -94,34 +140,29 @@ public class VirtualPet {
         face.setMessage(s);
     }
 
-    public int getOpScore(){
-        return opScore;
+    public void defender(String a) {
+        if (a.equals("Ramos")) {
+            face.setMessage("Oh no! Ramos.");
+            face.setImage("ramos");
+        }
+
+        if (a.equals("Maguire")) {
+            face.setMessage("Phew, its just Maguire!");
+            face.setImage("maguire");
+        }
+
     }
 
-    public int getOurScore(){
-        return ourScore;
-    }
+    //user input
 
-    
-
-    public String getAnswer(String a) {
+     public String getAnswer(String a) {
         String s = (String) JOptionPane.showInputDialog(
                 new JFrame(), a, "Message", JOptionPane.PLAIN_MESSAGE);
 
         return s;
     }
 
-    public void takeABeat(int milliseconds) {
-        try {
-            Thread.sleep(milliseconds); // milliseconds
-        } catch (Exception e) {
-
-        }
-
-    }
-
-
-    public Integer getAnswer2(String s) {
+     public Integer getAnswer2(String s) {
         Object[] options = { "Meg him", "Do a bodyfaint" };
 
         Integer n = JOptionPane.showOptionDialog(new JFrame(), s,
@@ -137,7 +178,7 @@ public class VirtualPet {
     }
 
     public Integer getAnswer3() {
-        Object[] options = { "Shoot left", "Shoot right" };
+        Object[] options = { "Shoot right", "Shoot left" };
 
         Integer n = JOptionPane.showOptionDialog(new JFrame(), "You have a shot opening",
 
@@ -151,45 +192,44 @@ public class VirtualPet {
         return n;
     }
 
-    public boolean megFaint2(Integer i){
-        
-        double n = Math.random() * 2;
-        if (i == 1 && n == 1){
-            return true;
-        }else if( i == 0 && n == 0)  {
-            return true;
-        }
 
-        return false;
+
+
+    
+
+    
+
+
+
+    
+    //misc
+   
+
+    public int getOpScore(){
+        return opScore;
+    }
+
+    public int getOurScore(){
+        return ourScore;
     }
 
 
+    public void takeABeat(int milliseconds) {
+        try {
+            Thread.sleep(milliseconds); 
+        } catch (Exception e) {
 
-
-    public void goalChance(Integer i) {
-
-        int random = (int) (Math.random() * 2);
-
-        //left = 0 right = 1
-
-        if (i == 0 && random == 0) {
-            face.setMessage("Shooting...");
-            takeABeat(500);
-            face.setMessage("YOU SCORED!");
-            ourScore++;
-            face.setImage("ecstatic");
-        } else if (i == 1 && random == 1) {
-            face.setMessage("Shooting...");
-            takeABeat(500);
-            face.setMessage("YOU SCORED!");
-            ourScore++;
-            face.setImage("ecstatic");
-        } else {
-            face.setMessage("Shooting...");
-            takeABeat(500);
-            face.setMessage("You missed.");
-            face.setImage("verysad");
         }
 
     }
+
+
+   
+
+    
+
+
+
+
+   
 } // end Virtual Pet

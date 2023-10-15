@@ -25,10 +25,11 @@ public class Runner {
         p.face.setMessage("Kickoff commences");
         p.takeABeat(2000);
         }
+        
         p.face.setMessage("You get the ball again...");
         p.takeABeat(1000);
         p.defender("Maguire");
-        a = p.megFaint2(p.getAnswer2("You come accross Maguire, how many stepovers are you doing?"));
+        a = p.megFaint(p.getAnswer2("You come accross Maguire, do you meg him or body faint?"));
         p.passedHim(a);
 
         p.endGame();
