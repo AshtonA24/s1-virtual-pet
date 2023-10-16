@@ -31,20 +31,20 @@ public class VirtualPet {
         // i: left = 1 right = 0
         //random: miss = 0 goal = 1
 
-        if (i == 1 && random == 1) {
+        if (i == 0 && random == 1) {
             face.setMessage("Shooting...");
             takeABeat(500);
             face.setMessage("YOU SCORED!");
             ourScore++;
             face.setImage("leftGoal");
-        } else if (i == 0 && random == 1) {
+        } else if (i == 1 && random == 1) {
             face.setMessage("Shooting...");
             face.setImage("rightGoal");
             takeABeat(500);
             face.setMessage("YOU SCORED!");
             ourScore++;
             
-        } else if(i==1) {
+        } else if(i==0) {
             face.setMessage("Shooting...");
             face.setImage("leftMiss");
             takeABeat(500);
@@ -74,10 +74,10 @@ public class VirtualPet {
 
     public boolean megFaint(Integer i){
         
-        double n = Math.random() * 2;
-        if (i == 1 && n == 1){
+        int random = (int) (Math.random() * 2);
+        if (i == 1 && random == 1){
             return true;
-        }else if( i == 0 && n == 0)  {
+        }else if( i == 0 && random == 0)  {
             return true;
         }
 
@@ -118,7 +118,6 @@ public class VirtualPet {
             face.setMessage("You didnt get passed him.");
             takeABeat(1500);
             face.setMessage("You lose possesion and they score.");
-            takeABeat(1000);
             opScore ++;
             displayScore();
             face.setImage("cry");
@@ -178,7 +177,7 @@ public class VirtualPet {
     }
 
     public Integer getAnswer3() {
-        Object[] options = { "Shoot right", "Shoot left" };
+        Object[] options = { "Shoot left", "Shoot right" };
 
         Integer n = JOptionPane.showOptionDialog(new JFrame(), "You have a shot opening",
 
